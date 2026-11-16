@@ -121,7 +121,7 @@ def fetch_betas():
     for i in range(min(40, len(raw))):
 
         line = " | ".join(
-            raw.iloc[i].astype(str)
+            raw.iloc[i].map(str).tolist()
         ).lower()
 
         if (
