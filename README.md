@@ -22,7 +22,7 @@ https://pages.stern.nyu.edu/~adamodar/pc/datasets/betas.xls
 
 The app downloads and reads the Damodaran Excel file directly and uses the Unlevered Beta for the selected U.S. industry.
 
-A copy of `betas.xls` can also be stored in the GitHub repository as a backup if the live download fails.
+A copy of `betas.xls` is also stored in the GitHub repository as a backup if the live download fails.
 
 ### Corporate Tax Rates
 
@@ -30,7 +30,13 @@ OECD Corporate Tax Statistics 2024:
 
 https://www.oecd.org/en/publications/corporate-tax-statistics-2024_9c27d6e8-en/full-report/statutory-corporate-income-tax-rates_440f9286.html#chapter-d1e2342-08e74a33fb
 
-The app follows the official Figure 2.1 Statlink from this page and retrieves the statutory corporate income tax rates.
+The OECD publication page may block automated requests from Streamlit Cloud.
+
+Therefore, the app downloads the underlying official OECD Excel data through the Statlink associated with the corporate tax rate figure:
+
+https://stat.link/0qkxo1
+
+This is the underlying OECD data linked from the professor-provided OECD publication.
 
 ### USD BBB Borrowing Spread
 
@@ -38,7 +44,7 @@ Aswath Damodaran:
 
 https://pages.stern.nyu.edu/adamodar/New_Home_Page/datafile/ratings.html
 
-The app uses the Baa2/BBB default spread for large non-financial service firms.
+The app uses the Baa2/BBB borrowing spread for large non-financial service firms.
 
 ### 10-Year Government Bond Yields
 
@@ -46,9 +52,9 @@ Trading Economics:
 
 https://tradingeconomics.com/bonds
 
-The app first attempts to retrieve the data from the professor-provided bonds page.
+The app first attempts to retrieve the 10-year government bond yield from the professor-provided Trading Economics bonds page.
 
-If that page is rendered dynamically, the app follows the corresponding country government-bond page on the same Trading Economics website.
+If that page is dynamically rendered, the app uses the corresponding country government-bond page on the same Trading Economics website.
 
 ## Main Formulas
 
@@ -96,15 +102,17 @@ The app automatically verifies the following:
 
 3. Overriding the foreign-currency BBB spread does not change the USD results.
 
-The app also reproduces the Colombia example discussed in class:
+The app also reproduces the Colombia example discussed in class.
+
+Inputs:
 
 - Unlevered beta: 0.80
 - Debt share: 30%
 - Tax rate: 35%
-- ERP: 6.5%
-- U.S. 10-year yield: 4.0%
-- Colombia 10-year yield: 12.0%
-- USD borrowing spread: 1.5%
+- Equity risk premium: 6.5%
+- U.S. 10-year government yield: 4.0%
+- Colombia 10-year government yield: 12.0%
+- USD BBB borrowing spread: 1.5%
 
 Expected results:
 
@@ -119,25 +127,26 @@ Expected results:
 
 ## Manual Overrides
 
-Users may manually override:
+The user can manually override:
 
 - Unlevered beta
 - U.S. corporate tax rate
 - Selected-country corporate tax rate
-- USD BBB spread
+- USD BBB borrowing spread
 - U.S. 10-year government yield
 - Selected-country 10-year government yield
-- Selected-country BBB spread
+- Selected-country BBB borrowing spread
 
 ## Other Features
 
 - Refresh source data button
 - Industry selection
-- Country selection
-- Adjustable ERP
+- Target-country selection
+- Adjustable equity risk premium
 - Adjustable target debt share
-- U.S. versus foreign tax-rate selection
+- Choice between U.S. and foreign corporate tax rate
 - Side-by-side USD and foreign-currency results
 - All-industry comparison
-- CSV download
+- Downloadable CSV results
 - Source and date display
+- Independent class-example verification
