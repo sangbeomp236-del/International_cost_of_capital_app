@@ -32,7 +32,7 @@ https://www.oecd.org/en/publications/corporate-tax-statistics-2024_9c27d6e8-en/f
 
 The OECD publication page may block automated requests from Streamlit Cloud.
 
-Therefore, the app downloads the underlying official OECD Excel data through the Statlink associated with the corporate tax rate figure:
+Therefore, the app downloads the underlying official OECD Excel data through the Statlink associated with the corporate tax-rate figure:
 
 https://stat.link/0qkxo1
 
@@ -92,39 +92,6 @@ Rd* = Rf* + s*
 
 WACC = (1 - d) × Re + d × Rd × (1 - tax rate)
 
-## Verification
-
-The app automatically verifies the following:
-
-1. Equal U.S. and foreign government bond yields produce equal USD and foreign-currency results when the foreign BBB spread override is off.
-
-2. When debt share is zero, WACC equals cost of equity.
-
-3. Overriding the foreign-currency BBB spread does not change the USD results.
-
-The app also reproduces the Colombia example discussed in class.
-
-Inputs:
-
-- Unlevered beta: 0.80
-- Debt share: 30%
-- Tax rate: 35%
-- Equity risk premium: 6.5%
-- U.S. 10-year government yield: 4.0%
-- Colombia 10-year government yield: 12.0%
-- USD BBB borrowing spread: 1.5%
-
-Expected results:
-
-- Levered beta: 1.0229
-- USD cost of equity: 10.6486%
-- USD pretax cost of debt: 5.5000%
-- USD WACC: 8.5265%
-- COP cost of equity: 19.1600%
-- COP BBB spread: 1.6154%
-- COP pretax cost of debt: 13.6154%
-- COP WACC: 16.0670%
-
 ## Manual Overrides
 
 The user can manually override:
@@ -146,7 +113,13 @@ The user can manually override:
 - Adjustable target debt share
 - Choice between U.S. and foreign corporate tax rate
 - Side-by-side USD and foreign-currency results
+- Calculation detail
 - All-industry comparison
 - Downloadable CSV results
 - Source and date display
-- Independent class-example verification
+
+## Notes
+
+The app uses the simplified international cost-of-capital formulas discussed in class.
+
+External websites may occasionally change their page structure or block automated requests. Manual override controls are therefore available for all major fetched inputs.
