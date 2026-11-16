@@ -786,15 +786,20 @@ with st.sidebar:
         "Tax basis"
     )
 
+    tax_options = (
+        ["United States"]
+        if country == "United States"
+        else ["United States", country]
+    )
+
     tax_choice = st.radio(
         "Use project tax rate from:",
-        [
-            "United States",
-            country
-        ],
+        tax_options,
         index=0
     )
 
+    if country == "United States":
+        tax_choice = "United States"
     if country == "United States":
         tax_choice = "United States"
 
